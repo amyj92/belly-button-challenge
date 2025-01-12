@@ -4,11 +4,11 @@ function buildMetadata(sample) {
 
     // get the metadata field
     let metadata = data.metadata;
-    console.log("Metadata:", metadata);   // Log the entire metadata
+    console.log("Metadata:", metadata);
 
     // Filter the metadata for the object with the desired sample number
     let result = metadata.filter(sampleNumber => sampleNumber.id == sample)[0];
-    console.log("Filtered metadata for sample:", result);   // Log the filtered result
+    console.log("Filtered metadata for sample:", result);
 
     // Use d3 to select the panel with id of `#sample-metadata`
     let panel = d3.select("#sample-metadata");
@@ -32,11 +32,11 @@ function buildCharts(sample) {
 
     // Get the samples field
     let samples = data.samples;
-    console.log("Samples data:", samples);    // Log the entire samples data
+    console.log("Samples data:", samples);
 
     // Filter the samples for the object with the desired sample number
     let result = samples.filter(sampleNumber => sampleNumber.id == sample)[0];
-    console.log("Filtered sample data for sample:", result);    // Log the filtered sample result
+    console.log("Filtered sample data for sample:", result);
 
     // Get the otu_ids, otu_labels, and sample_values
     let otu_ids = result.otu_ids;
@@ -73,7 +73,7 @@ function buildCharts(sample) {
 
     // For the Bar Chart, map the otu_ids to a list of strings for your yticks
     let yticks = otu_ids.map(id => `OTU ${id}`).slice(0, 10).reverse();
-    console.log("Y-ticks for Bar Chart:", yticks);    // Log the y-ticks
+    console.log("Y-ticks for Bar Chart:", yticks);
 
     // Build a Bar Chart
     // Don't forget to slice and reverse the input data appropriately
@@ -104,7 +104,7 @@ function init() {
 
     // Get the names field
     let names = data.names;
-    console.log("Sample names:", names);    // Log the sample names
+    console.log("Sample names:", names);
 
     // Use d3 to select the dropdown with id of `#selDataset`
     let dropdownMenu = d3.select("#selDataset");
@@ -114,12 +114,12 @@ function init() {
     // option for each sample name.
     names.forEach(name => {
       dropdownMenu.append("option").text(name).property("value", name);
-      console.log("Added option for sample:", name);    // Log each added sample option
+      console.log("Added option for sample:", name);
     });
 
     // Get the first sample from the list
     let firstSample = names[0];
-    console.log("First sample selected:", firstSample);   // Log the first sample selected
+    console.log("First sample selected:", firstSample);
 
     // Build charts and metadata panel with the first sample
     buildCharts(firstSample);
@@ -131,7 +131,7 @@ function init() {
 
 // Function for event listener
 function optionChanged(newSample) {
-  console.log("Sample changed to:", newSample);   // Log the new sample selected
+  console.log("Sample changed to:", newSample);
   // Build charts and metadata panel each time a new sample is selected
   buildCharts(newSample);
   buildMetadata(newSample);
